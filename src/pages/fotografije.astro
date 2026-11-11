@@ -1,0 +1,113 @@
+---
+import { Picture } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { credits, photo, type PhotoKey } from '../data/images';
+
+const entries = Object.entries(credits) as [PhotoKey, (typeof credits)[PhotoKey]][];
+---
+
+<BaseLayout title="Avtorji fotografij" description="Avtorji in licence simboličnih fotografij jedi na spletni strani Dobre Vile.">
+  <Nav base="/" />
+  <main id="vsebina" class="section">
+    <div class="container">
+      <a class="back" href="/">← Nazaj na meni</a>
+      <h1 class="h2">Avtorji fotografij</h1>
+      <p class="lead intro">
+        Fotografije na strani so simbolične in ne prikazujejo dejanskih jedi Dobre Vile. Vse so z Wikimedia Commons in
+        objavljene pod prostimi licencami. Fotografije so obrezane in pomanjšane.
+      </p>
+      <ul class="credits">
+        {
+          entries.map(([key, c]) => (
+            <li class="credit">
+              <Picture src={photo(key)} alt="" widths={[120, 180]} sizes="72px" formats={['avif', 'webp']} loading="lazy" />
+              <div>
+                <a href={c.page} target="_blank" rel="noopener noreferrer" class="credit__file">
+                  {c.file.replace(/\.[a-z]+$/i, '').replaceAll('_', ' ')}
+                </a>
+                <p class="credit__meta">
+                  {c.author} ·{' '}
+                  <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer license">
+                    {c.license}
+                  </a>
+                </p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import '../scripts/ui.ts';
+</script>
+
+<style>
+  .back {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-bottom: var(--s-4);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .back:hover {
+    text-decoration: underline;
+  }
+
+  .intro {
+    margin-block: var(--s-4) var(--s-6);
+  }
+
+  .credits {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+    gap: var(--s-3);
+  }
+
+  .credit {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: var(--s-3);
+    align-items: center;
+    padding: var(--s-2);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    font-size: 0.875rem;
+    min-width: 0;
+  }
+
+  .credit :global(img) {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: var(--r-sm);
+  }
+
+  .credit > div {
+    min-width: 0;
+  }
+
+  .credit__file {
+    display: block;
+    color: var(--ink);
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+
+  .credit__file:hover {
+    color: var(--accent);
+  }
+
+  .credit__meta {
+    color: var(--ink-muted);
+    overflow-wrap: anywhere;
+  }
+</style>

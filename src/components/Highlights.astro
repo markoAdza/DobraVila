@@ -1,0 +1,91 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+
+const items = [
+  { icon: 'truck', title: 'Dostava', text: 'Na dom ali v službo' },
+  { icon: 'bag', title: 'Osebni prevzem', text: 'Naročite in se oglasite' },
+  { icon: 'card', title: 'Plačilo s kartico', text: 'Kartice sprejemamo' },
+  {
+    icon: 'star',
+    title: `Ocena ${site.rating.value.toFixed(1).replace('.', ',')} / 5`,
+    text: `${site.rating.count} ocen na Googlu`,
+  },
+] as const;
+---
+
+<section class="highlights" aria-label="Prednosti">
+  <ul class="container highlights__list">
+    {items.map((it) => (
+      <li class="highlights__item">
+        <span class:list={['icon-bubble', { 'icon-bubble--star': it.icon === 'star' }]}>
+          <Icon name={it.icon} />
+        </span>
+        <span>
+          <strong>{it.title}</strong>
+          <span class="highlights__text">{it.text}</span>
+        </span>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .highlights {
+    background: var(--surface-alt);
+    border-block: 1px solid var(--line);
+  }
+
+  .highlights__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--s-5);
+    padding-block: var(--s-6);
+  }
+
+  .highlights__item {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    line-height: 1.3;
+  }
+
+  .highlights__item strong {
+    display: block;
+    color: var(--ink);
+    font: 700 1rem/1.25 var(--font-display);
+  }
+
+  .highlights__text {
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+  }
+
+  .icon-bubble--star {
+    background: var(--mustard-soft);
+    color: var(--closed);
+  }
+
+  .icon-bubble--star :global(svg) {
+    fill: var(--mustard);
+    stroke: var(--closed);
+  }
+
+  @media (max-width: 899px) {
+    .highlights__list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 419px) {
+    .highlights__list {
+      gap: var(--s-4);
+    }
+
+    .highlights__item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--s-2);
+    }
+  }
+</style>

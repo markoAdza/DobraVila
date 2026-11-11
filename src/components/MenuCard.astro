@@ -1,0 +1,201 @@
+---
+import { Picture } from 'astro:assets';
+import Icon from './Icon.astro';
+import type { MenuItem } from '../data/menu';
+import { glossary } from '../data/menu';
+import { photo } from '../data/images';
+import { formatPrice } from '../data/site';
+
+interface Props {
+  item: MenuItem;
+  /** visible text of the category, used in the alt text */
+  category: string;
+}
+const { item, category } = Astro.props;
+
+/** Split the description so glossary words can be wrapped in a tooltip. */
+type Part = { text: string; tip?: string };
+const parts: Part[] = [];
+if (item.desc) {
+  const words = Object.keys(glossary);
+  const re = new RegExp(`(${words.join('|')})`, 'gi');
+  for (const chunk of item.desc.split(re)) {
+    if (!chunk) continue;
+    const tip = glossary[chunk.toLowerCase()];
+    parts.push(tip ? { text: chunk, tip } : { text: chunk });
+  }
+}
+const alt = `${item.name} (${category.toLowerCase()}), simbolična fotografija`;
+---
+
+<li class="dish">
+  <div class="dish__img">
+    <Picture
+      src={photo(item.img)}
+      alt={alt}
+      widths={[160, 240, 320]}
+      sizes="(max-width: 599px) 92px, 112px"
+      formats={['avif', 'webp']}
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="dish__body">
+    <div class="dish__head">
+      <h3 class="dish__name">{item.name}</h3>
+      <p class="dish__price">
+        {formatPrice(item.price)}
+        {item.unit && <span class="dish__unit">{item.unit}</span>}
+      </p>
+    </div>
+    {
+      parts.length > 0 && (
+        <p class="dish__desc">
+          {parts.map((p) =>
+            p.tip ? (
+              <span class="term" tabindex="0">
+                {p.text}
+                <span class="term__tip" role="tooltip">
+                  {p.tip}
+                </span>
+              </span>
+            ) : (
+              p.text
+            ),
+          )}
+        </p>
+      )
+    }
+    {
+      item.tags && item.tags.length > 0 && (
+        <p class="dish__tags">
+          {item.tags.includes('veg') && (
+            <span class="badge badge--veg">
+              <Icon name="leaf" />
+              brez mesa
+            </span>
+          )}
+          {item.tags.includes('spicy') && (
+            <span class="badge badge--spicy">
+              <Icon name="flame" />
+              pekoče
+            </span>
+          )}
+        </p>
+      )
+    }
+  </div>
+</li>
+
+<style>
+  .dish {
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    gap: var(--s-4);
+    align-items: start;
+    padding: var(--s-3);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    transition:
+      transform 0.25s var(--ease-out),
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .dish:focus-within {
+    border-color: var(--accent);
+  }
+
+  @media (hover: hover) {
+    .dish:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--line-strong);
+    }
+
+    .dish:hover .dish__img :global(img) {
+      transform: scale(1.05);
+    }
+  }
+
+  .dish__img {
+    aspect-ratio: 1;
+    border-radius: var(--r-md);
+    overflow: hidden;
+    background: var(--surface-alt);
+  }
+
+  .dish__img :global(picture),
+  .dish__img :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease-out);
+  }
+
+  .dish__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+    min-width: 0;
+    padding-top: 2px;
+  }
+
+  .dish__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s-3);
+  }
+
+  .dish__name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+  }
+
+  .dish__price {
+    flex: none;
+    color: var(--accent);
+    font: 800 1.2rem/1 var(--font-display);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .dish__unit {
+    display: block;
+    margin-top: 2px;
+    font: 600 0.75rem/1 var(--font-body);
+    color: var(--ink-muted);
+  }
+
+  .dish__desc {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--ink-muted);
+  }
+
+  .dish__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+  }
+
+  @media (max-width: 599px) {
+    .dish {
+      grid-template-columns: 92px 1fr;
+      gap: var(--s-3);
+    }
+
+    .dish__name {
+      font-size: 1.0625rem;
+    }
+
+    .dish__desc {
+      font-size: 0.875rem;
+    }
+  }
+</style>

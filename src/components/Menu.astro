@@ -1,0 +1,213 @@
+---
+import MenuCard from './MenuCard.astro';
+import { menu, menuItemCount } from '../data/menu';
+import { site } from '../data/site';
+
+const countLabel = (n: number) => `${n} ${n === 1 ? 'jed' : 'jedi'}`;
+---
+
+<section class="menu section" id="meni" aria-labelledby="menu-title">
+  <div class="container menu__intro">
+    <p class="eyebrow">Meni · {menuItemCount} jedi</p>
+    <h2 id="menu-title" class="h2">Kaj bo danes?</h2>
+    <p class="lead">
+      Vse cene so v evrih. Naročite po telefonu <a href={site.phoneHref}>{site.phone}</a> za dostavo ali osebni prevzem.
+    </p>
+  </div>
+
+  <div class="chips" data-chips>
+    <div class="container">
+      <nav aria-label="Kategorije menija">
+        <ul class="chips__list" data-chips-list>
+          {menu.map((c) => (
+            <li>
+              <a class="chip" href={`#${c.id}`} data-chip={c.id}>
+                {c.title}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a class="chip" href="#pijace" data-chip="pijace">
+              Pijače
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="chips__sentinel" data-chips-sentinel aria-hidden="true"></div>
+
+  <div class="container menu__cats">
+    {
+      menu.map((c) => (
+        <section class="cat" id={c.id} aria-labelledby={`${c.id}-title`} data-cat>
+          <header class="cat__head">
+            <h2 id={`${c.id}-title`} class="cat__title">
+              {c.title}
+            </h2>
+            <span class="cat__count">{countLabel(c.items.length)}</span>
+            {c.intro && <p class="cat__intro">{c.intro}</p>}
+          </header>
+          <ul class="cat__grid">
+            {c.items.map((item) => (
+              <MenuCard item={item} category={c.title} />
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+    <p class="menu__note">
+      Fotografije so simbolične in ne prikazujejo dejanskih jedi Dobre Vile. <a href="/fotografije">Avtorji fotografij</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .menu {
+    padding-bottom: clamp(40px, 6vw, 72px);
+  }
+
+  .menu__intro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    margin-bottom: var(--s-6);
+  }
+
+  /* ---------- Sticky category chips ---------- */
+  .chips {
+    position: sticky;
+    top: var(--nav-h);
+    z-index: 40;
+    background: var(--bg);
+    border-bottom: 1px solid transparent;
+    transition:
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .chips.is-stuck {
+    box-shadow: var(--shadow-sm);
+    border-color: var(--line);
+  }
+
+  .chips__sentinel {
+    height: 1px;
+    margin-top: -1px;
+  }
+
+  .chips__list {
+    display: flex;
+    gap: var(--s-2);
+    padding-block: var(--s-3);
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    mask-image: linear-gradient(90deg, transparent 0, black 12px, black calc(100% - 24px), transparent 100%);
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+  }
+
+  .chips__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chips__list li {
+    scroll-snap-align: start;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 1rem;
+    border-radius: var(--r-pill);
+    border: 1.5px solid var(--line-strong);
+    background: var(--surface);
+    color: var(--ink-soft);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    white-space: nowrap;
+    text-decoration: none;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .chip:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+
+  .chip:active {
+    background: var(--surface-alt);
+  }
+
+  .chip:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: var(--r-pill);
+  }
+
+  .chip[aria-current='true'] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+  }
+
+  /* ---------- Categories ---------- */
+  .menu__cats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-8);
+    padding-top: var(--s-6);
+  }
+
+  .cat__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--s-2) var(--s-3);
+    margin-bottom: var(--s-5);
+  }
+
+  .cat__title {
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+    font-weight: 750;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .cat__count {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+  }
+
+  .cat__intro {
+    flex-basis: 100%;
+    color: var(--ink-muted);
+  }
+
+  .cat__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+    gap: var(--s-4);
+  }
+
+  .menu__note {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+  }
+
+  .menu__note a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+</style>

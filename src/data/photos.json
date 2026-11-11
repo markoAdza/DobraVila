@@ -1,0 +1,452 @@
+{
+  "kebab-hero": {
+    "file": "Donner Kebab, Cologne, Germany (1057919169).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Donner_Kebab,_Cologne,_Germany_(1057919169).jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/16/Donner_Kebab%2C_Cologne%2C_Germany_%281057919169%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Alex Kehr from Malibu, United States",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "width": 3872,
+    "height": 2592
+  },
+  "kebab-classic": {
+    "file": "Döner Kebab auf Teller.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:D%C3%B6ner_Kebab_auf_Teller.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/8/82/D%C3%B6ner_Kebab_auf_Teller.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Anton Porsche",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "width": 4928,
+    "height": 3264
+  },
+  "kebab-sesame": {
+    "file": "Doener Kebab (9682662957).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Doener_Kebab_(9682662957).jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/9/94/Doener_Kebab_%289682662957%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Lauren Travis",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "width": 4000,
+    "height": 3000
+  },
+  "kebab-maxi": {
+    "file": "Doner kebab shawarma pita.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Doner_kebab_shawarma_pita.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Doner_kebab_shawarma_pita.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Amin",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "width": 2448,
+    "height": 2968
+  },
+  "kebab-special": {
+    "file": "Döner kebab.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:D%C3%B6ner_kebab.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f9/D%C3%B6ner_kebab.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "de:Benutzer:Wollschaf",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "width": 1197,
+    "height": 936
+  },
+  "pita-veg": {
+    "file": "Döner Kebab, Berlin, 2010 (01).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:D%C3%B6ner_Kebab,_Berlin,_2010_(01).jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/a/aa/D%C3%B6ner_Kebab%2C_Berlin%2C_2010_%2801%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "AleGranholm",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "width": 1445,
+    "height": 963
+  },
+  "durum-beef": {
+    "file": "Dürüm of Ali Baba Tauberbischofsheim.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:D%C3%BCr%C3%BCm_of_Ali_Baba_Tauberbischofsheim.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/3/33/D%C3%BCr%C3%BCm_of_Ali_Baba_Tauberbischofsheim.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Triplec85",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "width": 3648,
+    "height": 2736
+  },
+  "durum-chicken": {
+    "file": "Falafel &Tzatziki Wrap - Lavash.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Falafel_%26Tzatziki_Wrap_-_Lavash.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/00/Falafel_%26Tzatziki_Wrap_-_Lavash.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Andy Li",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "width": 4032,
+    "height": 3024
+  },
+  "durum-strips": {
+    "file": "Handmade Chicken Shawarma Wrap - Lavash.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Handmade_Chicken_Shawarma_Wrap_-_Lavash.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Handmade_Chicken_Shawarma_Wrap_-_Lavash.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Andy Li",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "width": 4032,
+    "height": 3024
+  },
+  "durum-crispy": {
+    "file": "Smoked chicken and avocado wrap.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Smoked_chicken_and_avocado_wrap.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Smoked_chicken_and_avocado_wrap.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Takeaway",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "width": 2560,
+    "height": 2560
+  },
+  "durum-fries": {
+    "file": "Dana dürüm (veal wrap).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Dana_d%C3%BCr%C3%BCm_(veal_wrap).jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Dana_d%C3%BCr%C3%BCm_%28veal_wrap%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "E4024",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "width": 2560,
+    "height": 1920
+  },
+  "durum-veg": {
+    "file": "Kokorech wrap (dürüm) from Turkey.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Kokorech_wrap_(d%C3%BCr%C3%BCm)_from_Turkey.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/58/Kokorech_wrap_%28d%C3%BCr%C3%BCm%29_from_Turkey.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "E4024",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "width": 2410,
+    "height": 1730
+  },
+  "hotdog": {
+    "file": "Hot dog with two sausages, 2025-11-29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Hot_dog_with_two_sausages,_2025-11-29.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Hot_dog_with_two_sausages%2C_2025-11-29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Hekatlys",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "width": 4032,
+    "height": 2688
+  },
+  "hotdog-american": {
+    "file": "My hot dog at Hot Doug's.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:My_hot_dog_at_Hot_Doug%27s.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/d/d7/My_hot_dog_at_Hot_Doug%27s.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Benimoto",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "width": 4000,
+    "height": 3000
+  },
+  "hotdog-sausage": {
+    "file": "Hot dog at costco (9384083370).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Hot_dog_at_costco_(9384083370).jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/69/Hot_dog_at_costco_%289384083370%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "bob walker from London, UK",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "width": 2048,
+    "height": 1536
+  },
+  "corndog": {
+    "file": "Corn dog 001.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Corn_dog_001.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/77/Corn_dog_001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Ocdp",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "width": 4288,
+    "height": 2848
+  },
+  "burger-classic": {
+    "file": "Cheeseburger.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Cheeseburger.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Cheeseburger.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Renee Comet (photographer)",
+    "license": "Public domain",
+    "licenseUrl": "https://en.wikipedia.org/wiki/Public_domain",
+    "width": 2700,
+    "height": 1800
+  },
+  "burger-egg": {
+    "file": "Cheeseburger 2.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Cheeseburger_2.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Cheeseburger_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Kurtkaiser",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "width": 4608,
+    "height": 3456
+  },
+  "burger-glazar": {
+    "file": "Cheeseburger and fries 2.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Cheeseburger_and_fries_2.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Cheeseburger_and_fries_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Kurtkaiser",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "width": 4608,
+    "height": 3456
+  },
+  "burger-onion": {
+    "file": "Cheeseburger with onions at Hatfield Heath Festival 2017.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Cheeseburger_with_onions_at_Hatfield_Heath_Festival_2017.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Cheeseburger_with_onions_at_Hatfield_Heath_Festival_2017.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Acabashi",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "width": 2194,
+    "height": 2194
+  },
+  "burger-chicken-crispy": {
+    "file": "Popeyes chicken sandwich.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Popeyes_chicken_sandwich.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/9/91/Popeyes_chicken_sandwich.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Daiisyy",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "width": 3024,
+    "height": 4032
+  },
+  "burger-schnitzel": {
+    "file": "Argentine chicken burger sandwich with lettuce, tomato, fried egg, and mozzarella cheese on Don Yeyo bun - High angle view.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Argentine_chicken_burger_sandwich_with_lettuce,_tomato,_fried_egg,_and_mozzarella_cheese_on_Don_Yeyo_bun_-_High_angle_view.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/9/92/Argentine_chicken_burger_sandwich_with_lettuce%2C_tomato%2C_fried_egg%2C_and_mozzarella_cheese_on_Don_Yeyo_bun_-_High_angle_view.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Horacio Cambeiro",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "width": 4000,
+    "height": 3000
+  },
+  "burger-chicken-long": {
+    "file": "BK Original Chicken Sandwich.JPG",
+    "page": "https://commons.wikimedia.org/wiki/File:BK_Original_Chicken_Sandwich.JPG",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/c6/BK_Original_Chicken_Sandwich.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "BrokenSphere",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "width": 2272,
+    "height": 1704
+  },
+  "burger-double": {
+    "file": "McDonald's McDouble burger.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:McDonald%27s_McDouble_burger.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/6f/McDonald%27s_McDouble_burger.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Evan-Amos",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "width": 2720,
+    "height": 1640
+  },
+  "burger-cheese": {
+    "file": "McDonald's Double Cheeseburger (2024).png",
+    "page": "https://commons.wikimedia.org/wiki/File:McDonald%27s_Double_Cheeseburger_(2024).png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/a/a2/McDonald%27s_Double_Cheeseburger_%282024%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Filippos Fragkogiannis",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "width": 2800,
+    "height": 2800
+  },
+  "burger-spicy": {
+    "file": "Double Cheeseburger.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Double_Cheeseburger.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Double_Cheeseburger.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Horacio Cambeiro",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "width": 9528,
+    "height": 7144
+  },
+  "burger-mozzarella": {
+    "file": "Veggie burger (1).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Veggie_burger_(1).jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Veggie_burger_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Dan McKay from Winnipeg, Canada",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "width": 1200,
+    "height": 1600
+  },
+  "burger-veggie": {
+    "file": "Veggie burger on plate (Unsplash).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Veggie_burger_on_plate_(Unsplash).jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/8/81/Veggie_burger_on_plate_%28Unsplash%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Markus Spiske markusspiske",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "width": 5760,
+    "height": 3840
+  },
+  "burger-fried-cheese": {
+    "file": "Veggie Burger (24835249468).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Veggie_Burger_(24835249468).jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Veggie_Burger_%2824835249468%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Zimt Zauberstab",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "width": 4898,
+    "height": 3265
+  },
+  "sandwich-long": {
+    "file": "Cheesesteak sandwich with lots of cheese sauce.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Cheesesteak_sandwich_with_lots_of_cheese_sauce.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Cheesesteak_sandwich_with_lots_of_cheese_sauce.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Andrew Mager from San Francisco, CA, USA",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "width": 4000,
+    "height": 3000
+  },
+  "sandwich-extra-long": {
+    "file": "Cheesesteak heaven.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Cheesesteak_heaven.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/09/Cheesesteak_heaven.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Phil Denton from sunnyvale, CA, usa",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "width": 2048,
+    "height": 1536
+  },
+  "pleskavica": {
+    "file": "Pljeskavica (Sarajevo).JPG",
+    "page": "https://commons.wikimedia.org/wiki/File:Pljeskavica_(Sarajevo).JPG",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Pljeskavica_%28Sarajevo%29.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "BiHVolim",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "width": 3456,
+    "height": 2592
+  },
+  "burek": {
+    "file": "Meat burek (GAK bakery, Belgrade, Serbia).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Meat_burek_(GAK_bakery,_Belgrade,_Serbia).jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Meat_burek_%28GAK_bakery%2C_Belgrade%2C_Serbia%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Petar Milošević",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "width": 5178,
+    "height": 3882
+  },
+  "zepek": {
+    "file": "Vegan Spinach Borek - Baker Street Coffee, Brighton 2024-01-22.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Vegan_Spinach_Borek_-_Baker_Street_Coffee,_Brighton_2024-01-22.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Vegan_Spinach_Borek_-_Baker_Street_Coffee%2C_Brighton_2024-01-22.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Andy Li",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "width": 4032,
+    "height": 3024
+  },
+  "fries": {
+    "file": "French fries (Made in Argentina).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:French_fries_(Made_in_Argentina).jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f8/French_fries_%28Made_in_Argentina%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Horacio Cambeiro",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "width": 4000,
+    "height": 3000
+  },
+  "fries-loaded": {
+    "file": "Kebab Snackpack - Sydney.JPG",
+    "page": "https://commons.wikimedia.org/wiki/File:Kebab_Snackpack_-_Sydney.JPG",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Kebab_Snackpack_-_Sydney.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Mw12310",
+    "license": "Public domain",
+    "licenseUrl": "https://en.wikipedia.org/wiki/Public_domain",
+    "width": 2238,
+    "height": 2572
+  },
+  "fried-cheese": {
+    "file": "Smažený sýr s tatarskou omáčkou a brambory.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sma%C5%BEen%C3%BD_s%C3%BDr_s_tatarskou_om%C3%A1%C4%8Dkou_a_brambory.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/67/Sma%C5%BEen%C3%BD_s%C3%BDr_s_tatarskou_om%C3%A1%C4%8Dkou_a_brambory.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Oldsoft",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "width": 5184,
+    "height": 3456
+  },
+  "nuggets": {
+    "file": "Top of Wendy's Chicken Nuggets (25966852016).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Top_of_Wendy%27s_Chicken_Nuggets_(25966852016).jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/43/Top_of_Wendy%27s_Chicken_Nuggets_%2825966852016%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Willis Lam",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "width": 1600,
+    "height": 1200
+  },
+  "salad-greek": {
+    "file": "Horiatiki salad.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Horiatiki_salad.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Horiatiki_salad.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Scudsvlad",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "width": 2944,
+    "height": 1782
+  },
+  "salad-feta": {
+    "file": "Greek salad from supermarket.JPG",
+    "page": "https://commons.wikimedia.org/wiki/File:Greek_salad_from_supermarket.JPG",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Greek_salad_from_supermarket.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Gesalbte",
+    "license": "Public domain",
+    "licenseUrl": "https://en.wikipedia.org/wiki/Public_domain",
+    "width": 1600,
+    "height": 1200
+  },
+  "salad-caesar": {
+    "file": "Caesar Salad - Nando's 2026-10-11.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Caesar_Salad_-_Nando%27s_2026-10-11.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Caesar_Salad_-_Nando%27s_2026-10-11.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Andy Li",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "width": 8160,
+    "height": 6144
+  },
+  "salad-mixed": {
+    "file": "Mixed Green Salad (15977106804).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Mixed_Green_Salad_(15977106804).jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Mixed_Green_Salad_%2815977106804%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Prayitno / Thank you for (12 millions +) view from Los Angeles, USA",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "width": 4524,
+    "height": 2812
+  },
+  "waffle": {
+    "file": "Bubble waffle at Brighton Christmas market 2022.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Bubble_waffle_at_Brighton_Christmas_market_2022.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Bubble_waffle_at_Brighton_Christmas_market_2022.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Andy Li",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "width": 3024,
+    "height": 4032
+  },
+  "churros": {
+    "file": "Small Churros, San Churro Carousel, 2026 (01).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Small_Churros,_San_Churro_Carousel,_2026_(01).jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/58/Small_Churros%2C_San_Churro_Carousel%2C_2026_%2801%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Bahnfrend",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "width": 3919,
+    "height": 2935
+  },
+  "kebab-spit": {
+    "file": "Shawarma preparation in central Aleppo, Syria.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Shawarma_preparation_in_central_Aleppo,_Syria.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/17/Shawarma_preparation_in_central_Aleppo%2C_Syria.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Vyacheslav Argenberg",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "width": 4000,
+    "height": 3000
+  }
+}

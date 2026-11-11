@@ -1,0 +1,226 @@
+/* Shared components (DESIGN.md §4). Section-specific styles live in each .astro file. */
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-height: 48px;
+  padding: 0 1.375rem;
+  border-radius: var(--r-pill);
+  border: 1.5px solid transparent;
+  font: 600 0.9375rem/1 var(--font-body);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.btn--primary:hover {
+  background: var(--accent-hover);
+  color: var(--on-accent);
+  transform: translateY(-1px);
+}
+
+.btn--primary:active {
+  background: var(--accent-hover);
+  color: var(--on-accent);
+  transform: translateY(0);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+.btn--ghost:hover {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.btn--ghost:active {
+  background: var(--surface-alt);
+  color: var(--ink);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--r-pill);
+}
+
+.btn:disabled,
+.btn[aria-disabled='true'] {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.btn--sm {
+  min-height: 44px;
+  padding: 0 1rem;
+  font-size: 0.875rem;
+}
+
+/* ---------- Badges ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--r-pill);
+  font: 600 0.75rem/1.2 var(--font-body);
+  white-space: nowrap;
+}
+
+.badge svg {
+  width: 12px;
+  height: 12px;
+}
+
+.badge--veg {
+  background: var(--veg-soft);
+  color: var(--veg);
+}
+
+.badge--spicy {
+  background: var(--mustard-soft);
+  color: var(--closed);
+}
+
+.badge--note {
+  background: var(--surface-alt);
+  color: var(--ink-muted);
+}
+
+/* ---------- Open status pill ---------- */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 34px;
+  padding: 0.35rem 0.85rem 0.35rem 0.7rem;
+  border-radius: var(--r-pill);
+  font: 600 0.875rem/1.2 var(--font-body);
+  background: var(--surface);
+  color: var(--ink-muted);
+  border: 1px solid var(--line);
+}
+
+.status__dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+
+.status--open {
+  background: var(--ok-soft);
+  border-color: transparent;
+  color: var(--ok);
+}
+
+.status--open .status__dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: rgba(var(--ok-rgb), 0.35);
+  animation: pulse 2s ease-out infinite;
+}
+
+.status--closed {
+  background: var(--closed-soft);
+  border-color: transparent;
+  color: var(--closed);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* ---------- Glossary term (tooltip) ---------- */
+.term {
+  position: relative;
+  border-bottom: 1.5px dotted var(--mustard);
+  cursor: help;
+}
+
+.term:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.term__tip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  z-index: 5;
+  width: max-content;
+  max-width: 220px;
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--r-sm);
+  background: var(--ink);
+  color: var(--bg);
+  font: 500 0.8125rem/1.4 var(--font-body);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 4px);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease,
+    visibility 0.18s;
+  pointer-events: none;
+}
+
+.term:hover .term__tip,
+.term:focus-visible .term__tip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+/* ---------- Icon bubble ---------- */
+.icon-bubble {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.icon-bubble svg {
+  width: 20px;
+  height: 20px;
+}

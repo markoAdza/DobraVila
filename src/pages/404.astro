@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title="Stran ne obstaja" noindex>
+  <Nav base="/" />
+  <main id="vsebina" class="section notfound">
+    <div class="container notfound__inner">
+      <p class="eyebrow">Napaka 404</p>
+      <h1 class="h2">Te strani ni na meniju.</h1>
+      <p class="lead">Mogoče je bila pojedena. Vrnite se na meni ali nas pokličite.</p>
+      <div class="notfound__ctas">
+        <a class="btn btn--primary" href="/#meni">Na meni <Icon name="arrow-right" /></a>
+        <a class="btn btn--ghost" href={site.phoneHref}><Icon name="phone" />{site.phone}</a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import '../scripts/ui.ts';
+</script>
+
+<style>
+  .notfound {
+    min-height: 60vh;
+    display: grid;
+    align-items: center;
+  }
+
+  .notfound__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-4);
+  }
+
+  .notfound__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+  }
+</style>

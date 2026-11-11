@@ -1,0 +1,79 @@
+/* Design tokens: the only place where raw colour values live (see DESIGN.md §2). */
+:root {
+  color-scheme: light;
+
+  /* Backgrounds */
+  --bg: #faf6ef;
+  --surface: #ffffff;
+  --surface-alt: #f3ece0;
+  --surface-hover: #fff9f1;
+
+  /* Lines */
+  --line: #e6dccd;
+  --line-strong: #cdbfa9;
+
+  /* Text */
+  --ink: #1b1712;
+  --ink-soft: #4a4239;
+  --ink-muted: #675e53;
+  --on-accent: #ffffff;
+
+  /* Accent: paprika */
+  --accent: #c0321a;
+  --accent-hover: #9c2812;
+  --accent-soft: #fbe4dc;
+
+  /* Decorative: mustard */
+  --mustard: #f2b705;
+  --mustard-soft: #fdf1c7;
+
+  /* State */
+  --ok: #286c40;
+  --ok-soft: #e2f1e6;
+  --closed: #8a4b12;
+  --closed-soft: #f7e6d4;
+  --veg: #356b28;
+  --veg-soft: #e5f0df;
+
+  /* RGB helpers */
+  --ink-rgb: 27, 23, 18;
+  --accent-rgb: 192, 50, 26;
+  --bg-rgb: 250, 246, 239;
+  --mustard-rgb: 242, 183, 5;
+  --ok-rgb: 40, 108, 64;
+
+  /* Type */
+  --font-display: 'Bricolage Grotesque Variable', 'Arial Narrow', system-ui, sans-serif;
+  --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Spacing (8px scale) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+
+  /* Radii */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 18px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(var(--ink-rgb), 0.06), 0 4px 12px -6px rgba(var(--ink-rgb), 0.12);
+  --shadow-md: 0 10px 24px -12px rgba(var(--ink-rgb), 0.22), 0 2px 6px rgba(var(--ink-rgb), 0.05);
+  --shadow-lg: 0 30px 60px -30px rgba(var(--ink-rgb), 0.35);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Layout */
+  --container: 1200px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --nav-h: 68px;
+}

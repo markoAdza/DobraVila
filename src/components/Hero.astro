@@ -1,0 +1,187 @@
+---
+import { Picture } from 'astro:assets';
+import Icon from './Icon.astro';
+import OpenStatus from './OpenStatus.astro';
+import { site, formatPrice } from '../data/site';
+import { menu } from '../data/menu';
+import { photo } from '../data/images';
+
+const kebabs = menu.find((c) => c.id === 'kebab')?.items ?? [];
+const cheapest = kebabs.reduce((min, i) => (i.price < min.price ? i : min), kebabs[0]!);
+---
+
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <OpenStatus class="hero__status" />
+      <h1 id="hero-title" class="hero__title" data-rise style="--i: 1">
+        Kebab iz <span class="hl">100&nbsp;% slovenske</span> govedine.
+      </h1>
+      <p class="hero__lead" data-rise style="--i: 2">
+        {site.tagline}: kebab, burgerji, pleskavice, hot dogi in hišni burek. Dostava na dom ali v službo, ali pa se
+        oglasite in odnesite s sabo.
+      </p>
+      <div class="hero__ctas" data-rise style="--i: 3">
+        <a class="btn btn--primary" href={site.phoneHref}>
+          <Icon name="phone" />
+          Pokliči in naroči
+        </a>
+        <a class="btn btn--ghost" href="#meni">
+          Poglej meni
+          <Icon name="arrow-down" />
+        </a>
+      </div>
+      <p class="hero__address" data-rise style="--i: 4">
+        <Icon name="map-pin" />
+        {site.address.street}, {site.address.postcode} {site.address.city}
+      </p>
+    </div>
+
+    <div class="hero__media">
+      <Picture
+        src={photo('kebab-hero')}
+        alt="Kebab v lepinji s svežo zelenjavo in omako, postrežen na papirju"
+        widths={[480, 720, 960, 1280]}
+        sizes="(min-width: 900px) 560px, 100vw"
+        formats={['avif', 'webp']}
+        loading="eager"
+        fetchpriority="high"
+        class="hero__img"
+      />
+      <p class="hero__price" aria-hidden="true">
+        <span>{cheapest.name} že za</span>
+        <strong>{formatPrice(cheapest.price)}</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(32px, 6vw, 72px) clamp(40px, 6vw, 80px);
+  }
+
+  .hero__grid {
+    display: grid;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .hero__grid {
+      grid-template-columns: 1.05fr 1fr;
+    }
+  }
+
+  .hero__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-5);
+  }
+
+  .hero__copy :global(.hero__status) {
+    animation: rise 0.7s var(--ease-out) both;
+  }
+
+  [data-rise] {
+    animation: rise 0.7s var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 80ms);
+  }
+
+  .hero__title {
+    font-size: clamp(2.6rem, 6.4vw, 4.75rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.025em;
+  }
+
+  .hl {
+    background: linear-gradient(transparent 68%, rgba(var(--mustard-rgb), 0.75) 68%, rgba(var(--mustard-rgb), 0.75) 92%, transparent 92%);
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .hero__lead {
+    font-size: clamp(1.0625rem, 1.4vw, 1.1875rem);
+    line-height: 1.6;
+    max-width: 52ch;
+  }
+
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+  }
+
+  .hero__address {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    color: var(--ink-muted);
+    font-size: 0.9375rem;
+  }
+
+  .hero__address :global(svg) {
+    width: 18px;
+    height: 18px;
+    color: var(--accent);
+  }
+
+  .hero__media {
+    position: relative;
+    animation: rise 0.9s var(--ease-out) 0.15s both;
+  }
+
+  .hero__media :global(.hero__img) {
+    width: 100%;
+    aspect-ratio: 4 / 3.4;
+    object-fit: cover;
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .hero__price {
+    position: absolute;
+    left: clamp(-24px, -2vw, -8px);
+    bottom: clamp(16px, 3vw, 32px);
+    display: flex;
+    flex-direction: column;
+    padding: var(--s-3) var(--s-4);
+    border-radius: var(--r-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--line);
+    line-height: 1.2;
+  }
+
+  .hero__price span {
+    font-size: 0.8125rem;
+    color: var(--ink-muted);
+  }
+
+  .hero__price strong {
+    font: 800 1.5rem/1.1 var(--font-display);
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 599px) {
+    .hero__media :global(.hero__img) {
+      aspect-ratio: 4 / 3;
+    }
+
+    .hero__price {
+      left: var(--s-3);
+      bottom: var(--s-3);
+    }
+
+    .hero__ctas {
+      width: 100%;
+    }
+
+    .hero__ctas .btn {
+      flex: 1 1 auto;
+    }
+  }
+</style>

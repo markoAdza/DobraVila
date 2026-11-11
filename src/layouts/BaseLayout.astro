@@ -1,0 +1,84 @@
+---
+import '../styles/base.css';
+import '../styles/components.css';
+import { site } from '../data/site';
+import { menu } from '../data/menu';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** add Restaurant JSON-LD (home page only) */
+  structuredData?: boolean;
+  noindex?: boolean;
+}
+
+const { title, description = site.description, structuredData = false, noindex = false } = Astro.props;
+const pageTitle = title ? `${title} · ${site.fullName}` : `${site.fullName} · Kebab, burgerji in burek v Hrastniku`;
+const ogImage = new URL('/og-image.jpg', Astro.site ?? Astro.url).href;
+
+const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: site.fullName,
+  description: site.description,
+  telephone: '+386 70 153 575',
+  servesCuisine: ['Fast food', 'Kebab', 'Burgers'],
+  priceRange: '€',
+  acceptsReservations: false,
+  paymentAccepted: 'Credit Card',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    postalCode: site.address.postcode,
+    addressLocality: site.address.city,
+    addressCountry: site.address.country,
+  },
+  sameAs: [site.facebook],
+  openingHoursSpecification: site.hours
+    .filter((h) => h.open)
+    .map((h) => ({ '@type': 'OpeningHoursSpecification', dayOfWeek: dayNames[h.day], opens: h.open, closes: h.close })),
+  hasMenu: {
+    '@type': 'Menu',
+    hasMenuSection: menu.map((c) => ({
+      '@type': 'MenuSection',
+      name: c.title,
+      hasMenuItem: c.items.map((i) => ({
+        '@type': 'MenuItem',
+        name: i.name,
+        description: i.desc,
+        offers: { '@type': 'Offer', price: i.price.toFixed(2), priceCurrency: 'EUR' },
+      })),
+    })),
+  },
+};
+---
+
+<!doctype html>
+<html lang="sl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#faf6ef" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="sl_SI" />
+    <meta property="og:site_name" content={site.fullName} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {structuredData && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+  <body>
+    <a class="skip-link" href="#vsebina">Preskoči na vsebino</a>
+    <slot />
+  </body>
+</html>

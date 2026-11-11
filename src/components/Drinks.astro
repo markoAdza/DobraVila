@@ -1,0 +1,123 @@
+---
+import { drinks } from '../data/drinks';
+import { formatPrice } from '../data/site';
+---
+
+<section class="drinks section section--alt" id="pijace" aria-labelledby="drinks-title" data-cat>
+  <div class="container">
+    <div class="drinks__head">
+      <p class="eyebrow">Brezalkoholne pijače</p>
+      <h2 id="drinks-title" class="h2">Pijače</h2>
+    </div>
+    <ul class="drinks__list">
+      {
+        drinks.map((d) => (
+          <li class="drink">
+            <span class="drink__name">{d.name}</span>
+            <span class="drink__dots" aria-hidden="true" />
+            <span class="drink__sizes">
+              {d.sizes.map((s) => (
+                <span class="drink__size">
+                  {s.size && <span class="drink__vol">{s.size}</span>}
+                  <span class="drink__price">{formatPrice(s.price)}</span>
+                </span>
+              ))}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .drinks__head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    margin-bottom: var(--s-6);
+  }
+
+  .drinks__list {
+    display: grid;
+    gap: 0 var(--s-8);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: var(--s-2) var(--s-5);
+  }
+
+  @media (min-width: 760px) {
+    .drinks__list {
+      grid-template-columns: 1fr 1fr;
+      grid-auto-flow: column;
+      grid-template-rows: repeat(7, auto);
+    }
+  }
+
+  .drink {
+    display: flex;
+    align-items: baseline;
+    gap: var(--s-3);
+    min-height: 52px;
+    padding-block: var(--s-3);
+    border-bottom: 1px solid var(--line);
+    transition: background-color 0.2s ease;
+  }
+
+  .drink__name {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .drink__dots {
+    flex: 1;
+    min-width: var(--s-4);
+    border-bottom: 1.5px dotted var(--line-strong);
+    transform: translateY(-4px);
+  }
+
+  .drink__sizes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--s-1) var(--s-4);
+  }
+
+  .drink__size {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--s-2);
+    white-space: nowrap;
+  }
+
+  .drink__vol {
+    font-size: 0.8125rem;
+    color: var(--ink-muted);
+  }
+
+  .drink__price {
+    color: var(--accent);
+    font: 800 1.0625rem/1 var(--font-display);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 759px) {
+    .drink:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  @media (min-width: 760px) {
+    .drink:nth-child(7),
+    .drink:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  @media (max-width: 419px) {
+    .drinks__list {
+      padding-inline: var(--s-4);
+    }
+  }
+</style>

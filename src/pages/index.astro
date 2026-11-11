@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Highlights from '../components/Highlights.astro';
+import Menu from '../components/Menu.astro';
+import Drinks from '../components/Drinks.astro';
+import Visit from '../components/Visit.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout structuredData>
+  <Nav />
+  <main id="vsebina">
+    <Hero />
+    <Highlights />
+    <Menu />
+    <Drinks />
+    <Visit />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import '../scripts/ui.ts';
+</script>

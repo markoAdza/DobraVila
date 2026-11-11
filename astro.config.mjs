@@ -1,0 +1,8 @@
+// @ts-check
+import { defineConfig } from 'astro/config';
+
+export default defineConfig({
+  trailingSlash: 'ignore',
+  build: { inlineStylesheets: 'auto' },
+  devToolbar: { enabled: false },
+});

@@ -1,0 +1,92 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <p class="footer__name">{site.name}</p>
+      <p>Hitra kuhinja · {site.address.street}, {site.address.postcode} {site.address.city}</p>
+    </div>
+    <ul class="footer__links">
+      <li>
+        <a href={site.phoneHref}><Icon name="phone" />{site.phone}</a>
+      </li>
+      <li>
+        <a href={site.facebook} target="_blank" rel="noopener noreferrer"><Icon name="facebook" />Facebook</a>
+      </li>
+      <li>
+        <a href="/fotografije">Avtorji fotografij</a>
+      </li>
+    </ul>
+    <p class="footer__legal">© {year} {site.fullName}. Fotografije jedi so simbolične.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--ink);
+    color: rgba(var(--bg-rgb), 0.72);
+    padding-block: var(--s-7) var(--s-6);
+    font-size: 0.9375rem;
+  }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--s-5) var(--s-6);
+    align-items: center;
+  }
+
+  .footer__name {
+    color: var(--bg);
+    font: 800 1.5rem/1.1 var(--font-display);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--s-1);
+  }
+
+  .footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-5);
+  }
+
+  .footer__links a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    min-height: 44px;
+    color: var(--bg);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .footer__links a:hover {
+    color: var(--mustard);
+  }
+
+  .footer__links a:focus-visible {
+    outline-color: var(--mustard);
+  }
+
+  .footer__links :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+
+  .footer__legal {
+    grid-column: 1 / -1;
+    padding-top: var(--s-5);
+    border-top: 1px solid rgba(var(--bg-rgb), 0.14);
+    font-size: 0.8125rem;
+  }
+
+  @media (max-width: 759px) {
+    .footer__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,17 @@
+---
+/**
+ * Live "open now" pill. Rendered as a neutral pill at build time; src/scripts/ui.ts fills in the
+ * current state from site.hours in the Europe/Ljubljana time zone.
+ */
+import { site } from '../data/site';
+
+interface Props {
+  class?: string;
+}
+const { class: cls = '' } = Astro.props;
+---
+
+<p class:list={['status', cls]} data-open-status data-hours={JSON.stringify(site.hours)} data-tz={site.timeZone} aria-live="polite">
+  <span class="status__dot" aria-hidden="true"></span>
+  <span data-open-status-text>Pon–sob 11–21 · ned 14–21</span>
+</p>

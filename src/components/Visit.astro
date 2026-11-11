@@ -1,0 +1,189 @@
+---
+import Icon from './Icon.astro';
+import OpenStatus from './OpenStatus.astro';
+import { site } from '../data/site';
+---
+
+<section class="visit section" id="kontakt" aria-labelledby="visit-title">
+  <div class="container">
+    <div class="visit__head">
+      <p class="eyebrow">Kontakt</p>
+      <h2 id="visit-title" class="h2">Pokličite, pridemo. Ali pa pridite vi.</h2>
+    </div>
+
+    <div class="visit__grid">
+      <article class="info">
+        <span class="icon-bubble"><Icon name="phone" /></span>
+        <h3 class="info__title">Naročila in dostava</h3>
+        <p class="info__text">Pokličite in naročite za dostavo na dom ali v službo, ali za osebni prevzem.</p>
+        <a class="info__phone" href={site.phoneHref}>{site.phone}</a>
+        <a class="btn btn--primary" href={site.phoneHref}>
+          <Icon name="phone" />
+          Pokliči zdaj
+        </a>
+      </article>
+
+      <article class="info">
+        <span class="icon-bubble"><Icon name="clock" /></span>
+        <h3 class="info__title">Delovni čas</h3>
+        <OpenStatus />
+        <table class="hours">
+          <caption class="visually-hidden">Delovni čas po dnevih</caption>
+          <tbody>
+            {
+              site.hours.map((h) => (
+                <tr data-day={h.day}>
+                  <th scope="row">{h.label}</th>
+                  <td>{h.open ? `${h.open}–${h.close}` : 'zaprto'}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </article>
+
+      <article class="info">
+        <span class="icon-bubble"><Icon name="map-pin" /></span>
+        <h3 class="info__title">Kje smo</h3>
+        <address class="info__address">
+          {site.fullName}<br />
+          {site.address.street}<br />
+          {site.address.postcode} {site.address.city}
+        </address>
+        <div class="info__actions">
+          <a class="btn btn--ghost" href={site.mapsUrl} target="_blank" rel="noopener noreferrer">
+            <Icon name="navigation" />
+            Navodila za pot
+          </a>
+          <a class="btn btn--ghost" href={site.facebook} target="_blank" rel="noopener noreferrer">
+            <Icon name="facebook" />
+            Facebook
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .visit__head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    margin-bottom: var(--s-6);
+  }
+
+  .visit__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-4);
+  }
+
+  @media (max-width: 959px) {
+    .visit__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .info:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .visit__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-4);
+    padding: var(--s-6) var(--s-5);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-xl);
+  }
+
+  .info__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .info__text {
+    color: var(--ink-muted);
+  }
+
+  .info__phone {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--ink);
+    font: 800 clamp(1.75rem, 3vw, 2.125rem)/1 var(--font-display);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .info__phone:hover {
+    color: var(--accent);
+  }
+
+  .info .btn {
+    margin-top: auto;
+  }
+
+  .info__address {
+    font-style: normal;
+    line-height: 1.6;
+  }
+
+  .info__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    margin-top: auto;
+  }
+
+  .info__actions .btn {
+    margin-top: 0;
+  }
+
+  .hours {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+
+  .hours th,
+  .hours td {
+    padding: 0.45rem 0.6rem;
+    border-bottom: 1px solid var(--line);
+    font-weight: 400;
+    text-align: left;
+  }
+
+  .hours td {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+
+  .hours tr:last-child th,
+  .hours tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .hours tr.is-today th,
+  .hours tr.is-today td {
+    font-weight: 700;
+    color: var(--ink);
+    background: var(--accent-soft);
+  }
+
+  .hours tr.is-today th {
+    box-shadow: inset 3px 0 0 var(--accent);
+  }
+</style>
