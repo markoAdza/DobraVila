@@ -1,18 +1,49 @@
 ---
-import { Picture } from 'astro:assets';
+import { Image, Picture } from 'astro:assets';
 import Icon from './Icon.astro';
 import OpenStatus from './OpenStatus.astro';
 import { site, formatPrice } from '../data/site';
 import { menu } from '../data/menu';
 import { photo } from '../data/images';
+import logo from '../data/logo.json';
+import wordmark from '../assets/brand/logo-wordmark.png';
+import fairy from '../assets/brand/logo-fairy.png';
 
 const kebabs = menu.find((c) => c.id === 'kebab')?.items ?? [];
 const cheapest = kebabs.reduce((min, i) => (i.price < min.price ? i : min), kebabs[0]!);
+
+const place = (r: { left: number; top: number; width: number }) =>
+  `left:${r.left}%;top:${r.top}%;width:${r.width}%`;
 ---
 
-<section class="hero" id="top" aria-labelledby="hero-title">
+<section class="hero" id="top" aria-labelledby="hero-title" data-hero>
+  <canvas class="hero__sparkles" data-sparkles aria-hidden="true"></canvas>
+  <div class="hero__glow" aria-hidden="true"></div>
+
   <div class="container hero__grid">
     <div class="hero__copy">
+      <div class="lockup" style={`aspect-ratio:${logo.aspect}`} role="img" aria-label={site.name}>
+        <Image
+          src={wordmark}
+          alt=""
+          class="lockup__word"
+          style={place(logo.wordmark)}
+          widths={[420, 640, 900]}
+          sizes="(min-width: 900px) 480px, 92vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <div class="lockup__fairy" style={place(logo.fairy)}>
+          <div class="lockup__float">
+            <Image src={fairy} alt="" widths={[200, 400]} sizes="(min-width: 900px) 180px, 34vw" loading="eager" />
+            <span
+              class="lockup__tip"
+              data-wand-tip
+              style={`left:${logo.wandTip.left}%;top:${logo.wandTip.top}%`}></span>
+          </div>
+        </div>
+      </div>
+
       <OpenStatus class="hero__status" />
       <h1 id="hero-title" class="hero__title" data-rise style="--i: 1">
         Kebab iz <span class="hl">100&nbsp;% slovenske</span> govedine.
@@ -22,11 +53,11 @@ const cheapest = kebabs.reduce((min, i) => (i.price < min.price ? i : min), keba
         oglasite in odnesite s sabo.
       </p>
       <div class="hero__ctas" data-rise style="--i: 3">
-        <a class="btn btn--primary" href={site.phoneHref}>
+        <a class="btn btn--primary btn--glow" href={site.phoneHref}>
           <Icon name="phone" />
           Pokliči in naroči
         </a>
-        <a class="btn btn--ghost" href="#meni">
+        <a class="btn btn--on-night" href="#meni">
           Poglej meni
           <Icon name="arrow-down" />
         </a>
@@ -38,16 +69,17 @@ const cheapest = kebabs.reduce((min, i) => (i.price < min.price ? i : min), keba
     </div>
 
     <div class="hero__media">
-      <Picture
-        src={photo('kebab-hero')}
-        alt="Kebab v lepinji s svežo zelenjavo in omako, postrežen na papirju"
-        widths={[480, 720, 960, 1280]}
-        sizes="(min-width: 900px) 560px, 100vw"
-        formats={['avif', 'webp']}
-        loading="eager"
-        fetchpriority="high"
-        class="hero__img"
-      />
+      <div class="hero__frame">
+        <Picture
+          src={photo('kebab-hero')}
+          alt="Kebab v lepinji s svežo zelenjavo in omako, postrežen na papirju"
+          widths={[480, 720, 960, 1280]}
+          sizes="(min-width: 900px) 560px, 100vw"
+          formats={['avif', 'webp']}
+          loading="eager"
+          class="hero__img"
+        />
+      </div>
       <p class="hero__price" aria-hidden="true">
         <span>{cheapest.name} že za</span>
         <strong>{formatPrice(cheapest.price)}</strong>
@@ -58,7 +90,40 @@ const cheapest = kebabs.reduce((min, i) => (i.price < min.price ? i : min), keba
 
 <style>
   .hero {
-    padding-block: clamp(32px, 6vw, 72px) clamp(40px, 6vw, 80px);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-block: clamp(28px, 5vw, 64px) clamp(48px, 7vw, 88px);
+    background: var(--night);
+    color: var(--on-night-muted);
+  }
+
+  .hero__sparkles {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  /* Soft cyan + magenta light behind the content (the logo's two colours). */
+  .hero__glow {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      radial-gradient(40rem 26rem at 12% 20%, rgba(var(--cyan-rgb), 0.22), transparent 70%),
+      radial-gradient(36rem 28rem at 88% 75%, rgba(var(--magenta-rgb), 0.2), transparent 70%),
+      linear-gradient(180deg, var(--night) 0%, var(--night-2) 100%);
+    animation: glow 14s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    to {
+      filter: hue-rotate(-12deg) brightness(1.08);
+      transform: scale(1.06);
+    }
   }
 
   .hero__grid {
@@ -69,7 +134,7 @@ const cheapest = kebabs.reduce((min, i) => (i.price < min.price ? i : min), keba
 
   @media (min-width: 900px) {
     .hero__grid {
-      grid-template-columns: 1.05fr 1fr;
+      grid-template-columns: 1.1fr 1fr;
     }
   }
 
@@ -80,24 +145,105 @@ const cheapest = kebabs.reduce((min, i) => (i.price < min.price ? i : min), keba
     gap: var(--s-5);
   }
 
+  /* ---------- Logo lockup: wordmark + separately animated fairy ---------- */
+  .lockup {
+    position: relative;
+    width: min(100%, 520px);
+    margin-bottom: var(--s-2);
+  }
+
+  .lockup :global(.lockup__word),
+  .lockup__fairy {
+    position: absolute;
+  }
+
+  .lockup :global(.lockup__word) {
+    height: auto;
+    animation: rise 0.9s var(--ease-out) both;
+  }
+
+  .lockup__fairy {
+    animation: fly-in 1.6s var(--ease-out) 0.2s both;
+  }
+
+  .lockup__float {
+    position: relative;
+    transform-origin: 30% 20%;
+    animation: float 5.5s ease-in-out 1.8s infinite;
+  }
+
+  .lockup__float :global(img) {
+    width: 100%;
+    height: auto;
+  }
+
+  .lockup__tip {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+    border-radius: 50%;
+    background: var(--on-night);
+    box-shadow:
+      0 0 10px 3px rgba(255, 255, 255, 0.8),
+      0 0 22px 8px rgba(var(--cyan-rgb), 0.55);
+    animation: twinkle 1.6s ease-in-out infinite;
+  }
+
+  @keyframes fly-in {
+    from {
+      opacity: 0;
+      transform: translate(60%, -40%) rotate(14deg) scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate(-2%, -7%) rotate(-3deg);
+    }
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.25);
+    }
+  }
+
+  /* ---------- Copy ---------- */
   .hero__copy :global(.hero__status) {
     animation: rise 0.7s var(--ease-out) both;
   }
 
   [data-rise] {
     animation: rise 0.7s var(--ease-out) both;
-    animation-delay: calc(var(--i, 0) * 80ms);
+    animation-delay: calc(0.25s + var(--i, 0) * 90ms);
   }
 
   .hero__title {
-    font-size: clamp(2.6rem, 6.4vw, 4.75rem);
+    color: var(--on-night);
+    font-size: clamp(2.3rem, 5.4vw, 4.1rem);
     font-weight: 800;
-    line-height: 1;
+    line-height: 1.02;
     letter-spacing: -0.025em;
   }
 
   .hl {
-    background: linear-gradient(transparent 68%, rgba(var(--mustard-rgb), 0.75) 68%, rgba(var(--mustard-rgb), 0.75) 92%, transparent 92%);
+    background: linear-gradient(90deg, rgba(var(--cyan-rgb), 0.85), rgba(var(--magenta-rgb), 0.85)) no-repeat 0 88% /
+      100% 0.22em;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
   }
@@ -118,27 +264,48 @@ const cheapest = kebabs.reduce((min, i) => (i.price < min.price ? i : min), keba
     display: inline-flex;
     align-items: center;
     gap: var(--s-2);
-    color: var(--ink-muted);
     font-size: 0.9375rem;
   }
 
   .hero__address :global(svg) {
     width: 18px;
     height: 18px;
-    color: var(--accent);
+    color: var(--cyan-light);
   }
 
+  /* ---------- Photo ---------- */
   .hero__media {
     position: relative;
-    animation: rise 0.9s var(--ease-out) 0.15s both;
+    animation: rise 0.9s var(--ease-out) 0.35s both;
   }
 
-  .hero__media :global(.hero__img) {
+  /* Gradient ring in the logo colours that slowly rotates. */
+  .hero__frame {
+    position: relative;
+    padding: 3px;
+    border-radius: calc(var(--r-xl) + 3px);
+    background: conic-gradient(from var(--angle, 0deg), var(--cyan), var(--magenta), var(--on-night), var(--cyan));
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    animation: spin-ring 8s linear infinite;
+  }
+
+  @property --angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+  }
+
+  @keyframes spin-ring {
+    to {
+      --angle: 360deg;
+    }
+  }
+
+  .hero__frame :global(.hero__img) {
     width: 100%;
     aspect-ratio: 4 / 3.4;
     object-fit: cover;
     border-radius: var(--r-xl);
-    box-shadow: var(--shadow-lg);
   }
 
   .hero__price {
@@ -151,8 +318,18 @@ const cheapest = kebabs.reduce((min, i) => (i.price < min.price ? i : min), keba
     border-radius: var(--r-lg);
     background: var(--surface);
     box-shadow: var(--shadow-md);
-    border: 1px solid var(--line);
     line-height: 1.2;
+    animation: bob 4s ease-in-out 1.2s infinite;
+  }
+
+  @keyframes bob {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+      transform: translateY(-6px) rotate(-2deg);
+    }
   }
 
   .hero__price span {
@@ -167,7 +344,7 @@ const cheapest = kebabs.reduce((min, i) => (i.price < min.price ? i : min), keba
   }
 
   @media (max-width: 599px) {
-    .hero__media :global(.hero__img) {
+    .hero__frame :global(.hero__img) {
       aspect-ratio: 4 / 3;
     }
 

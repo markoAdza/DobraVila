@@ -7,7 +7,7 @@ const countLabel = (n: number) => `${n} ${n === 1 ? 'jed' : 'jedi'}`;
 ---
 
 <section class="menu section" id="meni" aria-labelledby="menu-title">
-  <div class="container menu__intro">
+  <div class="container menu__intro" data-reveal>
     <p class="eyebrow">Meni · {menuItemCount} jedi</p>
     <h2 id="menu-title" class="h2">Kaj bo danes?</h2>
     <p class="lead">
@@ -41,14 +41,14 @@ const countLabel = (n: number) => `${n} ${n === 1 ? 'jed' : 'jedi'}`;
     {
       menu.map((c) => (
         <section class="cat" id={c.id} aria-labelledby={`${c.id}-title`} data-cat>
-          <header class="cat__head">
+          <header class="cat__head" data-reveal>
             <h2 id={`${c.id}-title`} class="cat__title">
               {c.title}
             </h2>
             <span class="cat__count">{countLabel(c.items.length)}</span>
             {c.intro && <p class="cat__intro">{c.intro}</p>}
           </header>
-          <ul class="cat__grid">
+          <ul class="cat__grid" data-reveal style="--i: 1">
             {c.items.map((item) => (
               <MenuCard item={item} category={c.title} />
             ))}

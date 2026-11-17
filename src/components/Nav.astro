@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
+import wordmark from '../assets/brand/logo-wordmark.png';
 import { site } from '../data/site';
 
 interface Props {
@@ -18,11 +20,16 @@ const links = [
 <header class="nav" data-nav>
   <div class="container nav__inner">
     <a class="brand" href={base || '#top'} aria-label={`${site.fullName}, na vrh strani`}>
-      <span class="brand__mark" aria-hidden="true">V</span>
-      <span class="brand__text">
-        <span class="brand__name">{site.name}</span>
-        <span class="brand__sub">Hitra kuhinja · Hrastnik</span>
-      </span>
+      <Image
+        src={wordmark}
+        alt=""
+        class="brand__logo"
+        widths={[160, 320]}
+        sizes="160px"
+        loading="eager"
+        decoding="async"
+      />
+      <span class="brand__sub">Hitra kuhinja<br />Hrastnik</span>
     </a>
 
     <nav class="nav__links" id="nav-links" aria-label="Glavna navigacija">
@@ -56,8 +63,11 @@ const links = [
     top: 0;
     z-index: 50;
     height: var(--nav-h);
-    background: var(--bg);
-    border-bottom: 1px solid var(--line);
+    background: rgba(var(--night-rgb), 0.92);
+    backdrop-filter: saturate(1.4) blur(10px);
+    -webkit-backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid var(--night-line);
+    color: var(--on-night);
   }
 
   .nav__inner {
@@ -73,44 +83,33 @@ const links = [
     align-items: center;
     gap: var(--s-3);
     min-height: 44px;
-    color: var(--ink);
+    color: var(--on-night);
     text-decoration: none;
   }
 
   .brand:hover {
-    color: var(--ink);
+    color: var(--on-night);
   }
 
-  .brand__mark {
-    display: grid;
-    place-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: var(--r-md);
-    background: var(--accent);
-    color: var(--on-accent);
-    font: 800 1.35rem/1 var(--font-display);
-    transition: transform 0.25s var(--ease-out);
+  .brand :global(.brand__logo) {
+    width: auto;
+    height: 46px;
+    transition: transform 0.4s var(--ease-out);
   }
 
-  .brand:hover .brand__mark {
-    transform: rotate(-6deg);
-  }
-
-  .brand__text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-  }
-
-  .brand__name {
-    font: 800 1.2rem/1.05 var(--font-display);
-    letter-spacing: -0.02em;
+  .brand:hover :global(.brand__logo) {
+    transform: rotate(-2deg) scale(1.04);
   }
 
   .brand__sub {
-    font-size: 0.75rem;
-    color: var(--ink-muted);
+    padding-left: var(--s-3);
+    border-left: 1px solid var(--night-line);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--on-night-muted);
   }
 
   .nav__links ul {
@@ -123,7 +122,7 @@ const links = [
     align-items: center;
     min-height: 44px;
     padding-inline: var(--s-1);
-    color: var(--ink-soft);
+    color: var(--on-night-muted);
     font-weight: 600;
     font-size: 0.9375rem;
     text-decoration: none;
@@ -133,12 +132,16 @@ const links = [
   }
 
   .nav__link:hover {
-    color: var(--ink);
-    box-shadow: inset 0 -2px 0 var(--mustard);
+    color: var(--on-night);
+    box-shadow: inset 0 -2px 0 var(--cyan);
   }
 
   .nav__link:active {
-    color: var(--accent);
+    color: var(--cyan-light);
+  }
+
+  .nav__link:focus-visible {
+    outline-color: var(--cyan-light);
   }
 
   .nav__actions {
@@ -157,9 +160,9 @@ const links = [
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    border: 1.5px solid var(--line-strong);
-    background: var(--surface);
-    color: var(--ink);
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    background: transparent;
+    color: var(--on-night);
     cursor: pointer;
     transition:
       border-color 0.2s ease,
@@ -167,11 +170,11 @@ const links = [
   }
 
   .nav__toggle:hover {
-    border-color: var(--ink);
+    border-color: var(--on-night);
   }
 
   .nav__toggle:active {
-    background: var(--surface-alt);
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .nav__toggle :global(svg) {
@@ -198,8 +201,8 @@ const links = [
       top: var(--nav-h);
       left: 0;
       right: 0;
-      background: var(--surface);
-      border-bottom: 1px solid var(--line);
+      background: var(--night);
+      border-bottom: 1px solid var(--night-line);
       box-shadow: var(--shadow-lg);
       padding: var(--s-2) var(--gutter) var(--s-4);
       display: none;
@@ -219,7 +222,7 @@ const links = [
       width: 100%;
       min-height: 52px;
       font-size: 1.0625rem;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--night-line);
     }
 
     .nav__links li:last-child .nav__link {

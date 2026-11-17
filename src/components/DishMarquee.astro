@@ -1,0 +1,145 @@
+---
+import { Picture } from 'astro:assets';
+import { menu } from '../data/menu';
+import { photo } from '../data/images';
+import { formatPrice } from '../data/site';
+
+/** Up to two dishes from every category, each with its own photo. */
+const seen = new Set<string>();
+const picks = menu.flatMap((c) =>
+  c.items
+    .filter((i) => !seen.has(i.img) && seen.add(i.img))
+    .slice(0, 2)
+    .map((item) => ({ item, cat: c })),
+);
+---
+
+<section class="marquee" aria-label="Izbor z menija">
+  <div class="marquee__track" data-marquee>
+    {
+      [0, 1].map((copy) => (
+        <ul class="marquee__list" aria-hidden={copy === 1 ? 'true' : undefined}>
+          {picks.map(({ item, cat }) => (
+            <li>
+              <a class="pill" href={`#${cat.id}`} tabindex={copy === 1 ? -1 : undefined}>
+                <Picture
+                  src={photo(item.img)}
+                  alt=""
+                  widths={[96, 144]}
+                  sizes="48px"
+                  formats={['avif', 'webp']}
+                  loading="lazy"
+                  decoding="async"
+                  class="pill__img"
+                />
+                <span class="pill__name">{item.name}</span>
+                <span class="pill__price">{formatPrice(item.price)}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .marquee {
+    position: relative;
+    overflow: hidden;
+    background: var(--night-2);
+    border-block: 1px solid var(--night-line);
+    padding-block: var(--s-4);
+    mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+  }
+
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    animation: marquee 55s linear infinite;
+  }
+
+  .marquee:hover .marquee__track,
+  .marquee:focus-within .marquee__track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .marquee__list {
+    display: flex;
+    gap: var(--s-3);
+    padding-right: var(--s-3);
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-3);
+    min-height: 56px;
+    padding: 4px var(--s-4) 4px 4px;
+    border-radius: var(--r-pill);
+    background: var(--night-3);
+    border: 1px solid var(--night-line);
+    color: var(--on-night);
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      background-color 0.25s ease,
+      border-color 0.25s ease,
+      transform 0.25s var(--ease-out);
+  }
+
+  .pill:hover {
+    color: var(--on-night);
+    background: var(--night);
+    border-color: var(--cyan);
+    transform: translateY(-2px);
+  }
+
+  .pill:focus-visible {
+    outline-color: var(--cyan-light);
+    border-radius: var(--r-pill);
+  }
+
+  .pill :global(.pill__img) {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .pill__name {
+    font: 700 1rem/1.1 var(--font-display);
+  }
+
+  .pill__price {
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--r-pill);
+    background: var(--accent);
+    color: var(--on-accent);
+    font: 800 0.875rem/1 var(--font-display);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Without motion: a plain horizontally scrollable strip. */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      overflow-x: auto;
+      mask-image: none;
+    }
+
+    .marquee__track {
+      animation: none;
+      padding-inline: var(--gutter);
+    }
+
+    .marquee__list[aria-hidden='true'] {
+      display: none;
+    }
+  }
+</style>

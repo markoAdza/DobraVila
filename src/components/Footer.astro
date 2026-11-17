@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
+import wordmark from '../assets/brand/logo-wordmark.png';
 import { site } from '../data/site';
 
 const year = new Date().getFullYear();
@@ -8,7 +10,9 @@ const year = new Date().getFullYear();
 <footer class="footer">
   <div class="container footer__inner">
     <div class="footer__brand">
-      <p class="footer__name">{site.name}</p>
+      <p class="footer__name">
+        <Image src={wordmark} alt={site.name} widths={[220, 440]} sizes="220px" loading="lazy" class="footer__logo" />
+      </p>
       <p>Hitra kuhinja · {site.address.street}, {site.address.postcode} {site.address.city}</p>
     </div>
     <ul class="footer__links">
@@ -28,8 +32,8 @@ const year = new Date().getFullYear();
 
 <style>
   .footer {
-    background: var(--ink);
-    color: rgba(var(--bg-rgb), 0.72);
+    background: var(--night-2);
+    color: var(--on-night-muted);
     padding-block: var(--s-7) var(--s-6);
     font-size: 0.9375rem;
   }
@@ -42,10 +46,16 @@ const year = new Date().getFullYear();
   }
 
   .footer__name {
-    color: var(--bg);
+    color: var(--on-night);
     font: 800 1.5rem/1.1 var(--font-display);
     letter-spacing: -0.02em;
     margin-bottom: var(--s-1);
+  }
+
+  .footer__name :global(.footer__logo) {
+    width: 220px;
+    height: auto;
+    margin-bottom: var(--s-2);
   }
 
   .footer__links {
@@ -59,17 +69,17 @@ const year = new Date().getFullYear();
     align-items: center;
     gap: var(--s-2);
     min-height: 44px;
-    color: var(--bg);
+    color: var(--on-night);
     text-decoration: none;
     font-weight: 600;
   }
 
   .footer__links a:hover {
-    color: var(--mustard);
+    color: var(--cyan-light);
   }
 
   .footer__links a:focus-visible {
-    outline-color: var(--mustard);
+    outline-color: var(--cyan-light);
   }
 
   .footer__links :global(svg) {
@@ -80,7 +90,7 @@ const year = new Date().getFullYear();
   .footer__legal {
     grid-column: 1 / -1;
     padding-top: var(--s-5);
-    border-top: 1px solid rgba(var(--bg-rgb), 0.14);
+    border-top: 1px solid var(--night-line);
     font-size: 0.8125rem;
   }
 

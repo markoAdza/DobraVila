@@ -6,13 +6,13 @@ import { site } from '../data/site';
 
 <section class="visit section" id="kontakt" aria-labelledby="visit-title">
   <div class="container">
-    <div class="visit__head">
+    <div class="visit__head" data-reveal>
       <p class="eyebrow">Kontakt</p>
       <h2 id="visit-title" class="h2">Pokličite, pridemo. Ali pa pridite vi.</h2>
     </div>
 
     <div class="visit__grid">
-      <article class="info">
+      <article class="info" data-reveal style="--i: 1">
         <span class="icon-bubble"><Icon name="phone" /></span>
         <h3 class="info__title">Naročila in dostava</h3>
         <p class="info__text">Pokličite in naročite za dostavo na dom ali v službo, ali za osebni prevzem.</p>
@@ -23,7 +23,7 @@ import { site } from '../data/site';
         </a>
       </article>
 
-      <article class="info">
+      <article class="info" data-reveal style="--i: 2">
         <span class="icon-bubble"><Icon name="clock" /></span>
         <h3 class="info__title">Delovni čas</h3>
         <OpenStatus />
@@ -42,7 +42,7 @@ import { site } from '../data/site';
         </table>
       </article>
 
-      <article class="info">
+      <article class="info" data-reveal style="--i: 3">
         <span class="icon-bubble"><Icon name="map-pin" /></span>
         <h3 class="info__title">Kje smo</h3>
         <address class="info__address">

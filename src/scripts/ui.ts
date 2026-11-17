@@ -1,5 +1,6 @@
 /** Small progressive enhancements. The page works fully without JavaScript. */
 import type { DayHours } from '../data/site';
+import { initSparkles } from './sparkles';
 
 /* ---------- Mobile navigation ---------- */
 function initNav() {
@@ -134,6 +135,29 @@ function initChips() {
   document.querySelectorAll<HTMLElement>('[data-cat]').forEach((s) => io.observe(s));
 }
 
+/* ---------- Scroll reveal: [data-reveal] fades in once when it enters the viewport ---------- */
+function initReveal() {
+  const els = document.querySelectorAll<HTMLElement>('[data-reveal]');
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      });
+    },
+    { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+  );
+  els.forEach((el) => io.observe(el));
+}
+
 initNav();
 initStatus();
 initChips();
+initReveal();
+initSparkles();

@@ -85,7 +85,7 @@ button {
 }
 
 ::selection {
-  background: rgba(var(--mustard-rgb), 0.45);
+  background: rgba(var(--cyan-rgb), 0.28);
   color: var(--ink);
 }
 

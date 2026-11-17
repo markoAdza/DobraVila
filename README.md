@@ -40,17 +40,22 @@ Ko lastnik pripravi prave fotografije, jih zamenjaš tako:
 1. Sliko shrani v `src/assets/food/<ključ>.jpg` (na primer `kebab-hero.jpg`).
 2. Vnos za ta ključ odstrani iz `src/data/photos.json`, da se na strani `/fotografije` ne izpisuje več.
 
-Za ponovni prenos in optimizacijo slik s Commons zaženi `npm run assets`. Skripta ustvari tudi favicon in `og-image.jpg`.
+Za ponovni prenos in optimizacijo slik s Commons zaženi `npm run assets`.
+
+## Logotip
+
+Izvirni logotip je v `src/assets/brand/logo-source.png`. Ukaz `npm run logo` iz njega odstrani napis "hitra kuhinja", naredi prosojno ozadje in loči vilo od napisa (vila na strani lebdi in posipa iskrice). Ustvari tudi favicon, `apple-touch-icon.png` in `og-image.jpg`.
 
 ## Struktura
 
 ```
 src/
-  components/   Nav, Hero, Highlights, Menu, MenuCard, Drinks, Visit, Footer, OpenStatus, Icon
-  data/         vsebina (glej zgoraj)
+  components/   Nav, Hero, DishMarquee, Highlights, Menu, MenuCard, Drinks, Visit, Footer, OpenStatus, Icon
+  data/         vsebina (glej zgoraj), logo.json (geometrija logotipa)
   layouts/      BaseLayout (meta oznake, JSON-LD Restaurant)
   pages/        index, fotografije, 404
-  scripts/ui.ts mobilni meni, status odprtosti, aktivna kategorija
+  scripts/      ui.ts (mobilni meni, status odprtosti, aktivna kategorija, pojavljanje ob drsenju)
+                sparkles.ts (iskrice v heroju)
   styles/       tokens.css (barve, razmiki), base.css, components.css
 ```
 

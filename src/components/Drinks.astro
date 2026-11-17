@@ -5,11 +5,11 @@ import { formatPrice } from '../data/site';
 
 <section class="drinks section section--alt" id="pijace" aria-labelledby="drinks-title" data-cat>
   <div class="container">
-    <div class="drinks__head">
+    <div class="drinks__head" data-reveal>
       <p class="eyebrow">Brezalkoholne pijače</p>
       <h2 id="drinks-title" class="h2">Pijače</h2>
     </div>
-    <ul class="drinks__list">
+    <ul class="drinks__list" data-reveal style="--i: 1">
       {
         drinks.map((d) => (
           <li class="drink">

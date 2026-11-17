@@ -1,4 +1,4 @@
-# DESIGN.md — Dobre Vile · Hitra kuhinja (Hrastnik)
+# DESIGN.md: Dobre Vile · Hitra kuhinja (Hrastnik)
 
 > **Sveža ulična kuhinja.** Hrana je glavna, vse ostalo ji samo naredi prostor. Stran mora odgovoriti na tri vprašanja v petih sekundah: *kaj imate, koliko stane, kako naročim.*
 
@@ -6,74 +6,40 @@
 
 ## 1. Visual Theme & Atmosphere
 
-**Slog**: Warm Clean Street Food (svetla krem podlaga + en sam topel poudarek)
-**Ključne besede**: sveže, toplo, pregledno, krepko, domače, hitro
-**Ton**: neposreden, prijazen, lokalen (Hrastnik, Glažar, krumpantoč); NE korporativen, NE "premium črno-zlat", NE kičast
-**Občutek**: čist, natisnjen meni na kremnem papirju, kjer cene izstopajo v paprika rdeči.
+**Slog**: Fairy Night Street Food. Navigacija in hero sta temna skrilasta, v barvi podlage logotipa, z vilinskimi iskricami. Pod njima je svetla, pregledna vsebina menija.
+**Ključne besede**: čarobno, sveže, živahno, pregledno, krepko, lokalno
+**Ton**: neposreden, prijazen, lokalen (Hrastnik, Glažar, krumpantoč); NE korporativen, NE kičast.
+**Občutek**: logotip zaživi, ker vila lebdi in s palico posipa iskrice. Jedi se peljejo mimo kot na tekočem traku, vsebina pa ostane čista in hitro berljiva.
 
-**Interakcijski nivo**: **L1 · Refined Static**: mehak vstop hero vsebine, hover dvig kartic in rahel zoom slik, barvni prehodi gumbov. Brez scroll animacij, brez paralakse, brez knjižnic za animacije.
+**Logotip**: `src/assets/brand/` (vir `logo-source.png`, deli nastanejo z `npm run logo`). Uporablja se **brez** napisa "hitra kuhinja". Vila je ločena slika (`logo-fairy.png`), da lahko lebdi. Geometrija sestave je v `src/data/logo.json`.
+
+**Interakcijski nivo**: **L2 · Lively**. To pomeni iskrice (canvas) v heroju, lebdečo vilo, tekoči trak jedi, mehko pojavljanje sekcij ob drsenju in vrteč se barvni okvir hero fotografije. Brez paralakse, brez scroll-jackinga, brez knjižnic za animacije.
 **Odvisnosti**: Astro 7 · Fontsource (self-hosted pisave) · sharp (optimizacija slik). Nič drugega.
 
-**Princip pozornosti (namerno zmanjšan)**: uporabnik je zahteval *zelo preprosto*, zato stran nima 3 velikih "wow" efektov. Namesto tega:
-1. **Hero**: velik krepek naslov + velika fotografija kebaba + živa značka odprtosti.
-2. **Prvi scroll**: trak s 4 prednostmi (dostava, prevzem, kartica, Google ocena), takoj uporaben.
-3. **Meni**: lepljivi čipi kategorij + kartice s slikami; jasnost pred efekti.
-**Majhen detajl**: značka *Odprto · do 21:00* / *Zaprto · odpremo jutri ob 11:00* se računa v živo po slovenskem času, današnji dan v urniku je poudarjen; lokalni izraz *krumpantoč* ima majhno razlago ob prehodu z miško / fokusu.
+**Princip pozornosti**:
+1. **Hero (temen)**: logotip z vilo, ki prileti in lebdi, ter iskrice, ki sledijo miški. Pod njim krepek naslov, živa značka odprtosti in magenta CTA.
+2. **Tekoči trak jedi**: neskončen trak s fotografijo, imenom in ceno. Ob hoverju ali fokusu se ustavi, klik skoči na kategorijo.
+3. **Meni**: lepljivi čipi kategorij in kartice s slikami, ki se mehko pojavijo.
+**Majhen detajl**: značka *Odprto · do 21:00* / *Zaprto · odpremo jutri ob 11:00* se računa v živo po slovenskem času. Lokalni izraz *krumpantoč* ima razlago ob prehodu z miško ali fokusu.
 
 ## 2. Color Palette & Roles
 
-```css
-:root {
-  /* Podlage */
-  --bg: #FAF6EF;            /* krem: podlaga strani */
-  --surface: #FFFFFF;       /* kartice, navigacija */
-  --surface-alt: #F3ECE0;   /* izmenične sekcije (pijače, trak prednosti) */
-  --surface-hover: #FFF9F1; /* kartica ob hoverju */
+Barve izhajajo iz logotipa. Vse vrednosti so samo v `src/styles/tokens.css`.
 
-  /* Linije */
-  --line: #E6DCCD;          /* tanke ločnice */
-  --line-strong: #CDBFA9;   /* obrobe čipov, sekundarni gumb */
+| Vloga | Žeton | Vrednost | Opomba |
+|---|---|---|---|
+| Nočna podlaga (nav, hero, trak, noga) | `--night` / `--night-2` / `--night-3` | #24383F / #1A2A30 / #2E464E | ozadje logotipa |
+| Besedilo na noči | `--on-night` / `--on-night-muted` | #FFF / #B8C7CC | 12:1 / 7:1 |
+| Svetla podlaga vsebine | `--bg` / `--surface` / `--surface-alt` | #F6F8F9 / #FFF / #EDF2F4 | |
+| Naslovi / telo / opisi | `--ink` / `--ink-soft` / `--ink-muted` | #1D2C32 / #3D4B52 / #5B6A71 | ≥ 4.9:1 |
+| **Poudarek (magenta "vile")**: gumbi, cene, aktivni čip, povezave | `--accent` / `--accent-hover` | #C8146F / #A10F59 | 5.5:1 na beli |
+| Magenta logotipa (samo dekor) | `--magenta`, `--magenta-light` | #E0177F, #FF5CA8 | |
+| **Sekundarna (cian "dobre")**: podčrtaji, iskrice, hover na noči | `--cyan`, `--cyan-light`, `--cyan-ink` | #1BA1DF, #5CC6F2 (tekst na noči), #0A6E9E (tekst na svetlem) | |
+| Gorčica (samo zvezdica ocene in "pekoče") | `--mustard` | #F2B705 | |
+| Stanja | `--ok`, `--closed`, `--veg` (+ `-soft`) | nespremenjeno | |
 
-  /* Besedilo */
-  --ink: #1B1712;           /* naslovi, cene na temni */
-  --ink-soft: #4A4239;      /* telo besedila */
-  --ink-muted: #675E53;     /* opisi sestavin, meta (5.4:1 na --surface-alt) */
-  --on-accent: #FFFFFF;     /* besedilo na paprika rdeči */
-
-  /* Poudarek: paprika */
-  --accent: #C0321A;        /* gumbi, cene, aktivni čip, povezave (4.8:1 na --surface-alt) */
-  --accent-hover: #9C2812;  /* hover/active */
-  --accent-soft: #FBE4DC;   /* ozadje značk, focus halo */
-
-  /* Dekorativno: gorčica */
-  --mustard: #F2B705;       /* podčrtaji, zvezdica ocene (samo dekor, ne besedilo) */
-  --mustard-soft: #FDF1C7;  /* ozadje značke "pekoče" */
-
-  /* Stanje */
-  --ok: #286C40;            /* "Odprto" (5.4:1 na --ok-soft) */
-  --ok-soft: #E2F1E6;
-  --closed: #8A4B12;        /* "Zaprto" */
-  --closed-soft: #F7E6D4;
-  --veg: #356B28;           /* značka "brez mesa" */
-  --veg-soft: #E5F0DF;
-
-  /* RGB pomočniki za rgba() */
-  --ink-rgb: 27, 23, 18;
-  --accent-rgb: 192, 50, 26;
-  --bg-rgb: 250, 246, 239;
-  --mustard-rgb: 242, 183, 5;
-}
-```
-
-| Vloga | Žeton | Kontrast |
-|---|---|---|
-| Naslovi | `--ink` na `--bg` | 17:1 |
-| Telo | `--ink-soft` na `--bg` | 9:1 |
-| Opisi | `--ink-muted` na `--surface-alt` | ≥ 4.5:1 |
-| Cena / povezava | `--accent` na `--surface` | ≥ 5:1 |
-| Gumb | `--on-accent` na `--accent` | ≥ 5:1 |
-
-Dark mode: **ni predviden** (restavracijska stran, en enoten videz). `color-scheme: light`.
+Interaktivni elementi imajo eno poudarno barvo (magenta). Cian je dekor ter hover in fokus na temni podlagi.
+Dark mode: **ni predviden**, ker je hibrid namerno tak: temna glava, svetla vsebina. `color-scheme: light`.
 
 ## 3. Typography Rules
 
@@ -97,9 +63,9 @@ Dark mode: **ni predviden** (restavracijska stran, en enoten videz). `color-sche
 | Opis sestavin | body | 0.9375rem | 400 | 1.5 | 0 |
 | Gumb / čip | body | 0.9375rem | 600 | 1 | 0 |
 
-**Okras besedila** (text-decoration-rules): H1 ima **en** poudarjen del ("100 % slovenske") z gorčičnim podčrtajem (`background` linear-gradient na dnu, ne `text-decoration`). Brez gradientnega besedila, brez senc na besedilu.
+**Okras besedila**: H1 ima **en** poudarjen del ("100 % slovenske") s podčrtajem, ki prehaja iz cian v magento (`background` linear-gradient na dnu). Brez gradientnega besedila, brez senc na besedilu.
 
-**Prepovedano**: serifne pisave, script/handwritten pisave, Comic, več kot 2 družini, ALL CAPS za imena jedi v telesu (vir ima vse z velikimi, na strani jih pišemo v Title/Sentence case razen kratic).
+**Prepovedano**: serifne pisave, script/handwritten pisave (script je samo v sliki logotipa), Comic, več kot 2 družini, ALL CAPS za imena jedi v telesu (vir ima vse z velikimi, na strani jih pišemo v Title/Sentence case razen kratic).
 
 ## 4. Component Stylings
 
@@ -140,12 +106,13 @@ Dark mode: **ni predviden** (restavracijska stran, en enoten videz). `color-sche
 
 ### Navigation
 ```css
-.nav { position: sticky; top: 0; z-index: 50; background: var(--bg); /* polno neprozorno */
-       border-bottom: 1px solid var(--line); height: 68px; }
-.nav__link { color: var(--ink-soft); padding: .75rem .25rem; min-height: 44px; }
-.nav__link:hover { color: var(--ink); box-shadow: inset 0 -2px 0 var(--mustard); }
-.nav__link:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
-.nav__link[aria-current="true"] { color: var(--ink); }
+.nav { position: sticky; top: 0; z-index: 50; height: 68px;
+       background: rgba(var(--night-rgb), .92); backdrop-filter: blur(10px);
+       border-bottom: 1px solid var(--night-line); }
+.brand__logo { height: 46px; } /* logo-wordmark.png, ob hoverju rahlo zasuk */
+.nav__link { color: var(--on-night-muted); padding: .75rem .25rem; min-height: 44px; }
+.nav__link:hover { color: var(--on-night); box-shadow: inset 0 -2px 0 var(--cyan); }
+.nav__link:focus-visible { outline: 3px solid var(--cyan-light); outline-offset: 2px; border-radius: 6px; }
 /* Mobilno (< 760px): povezave v spustnem panelu, gumb "Meni" z aria-expanded. */
 ```
 
@@ -211,43 +178,29 @@ Obrobe so primarni ločevalnik; sence samo za interakcijo in hero.
 
 ## 7. Animation & Interaction
 
-**Nivo: L1 · Refined Static**
+**Nivo: L2 · Lively.** Vse animacije so CSS ali en majhen canvas in spreminjajo samo `transform`, `opacity` ali `translate`.
 
-### Dependencies
-Brez. Čisti CSS + ~60 vrstic TypeScripta (mobilni meni, status odprtosti, aktivni čip).
+| Element | Kje | Kako |
+|---|---|---|
+| Iskrice | `src/scripts/sparkles.ts`, `<canvas data-sparkles>` v heroju | Zvezdice in pikice (bela, cian, magenta) lebdijo navzgor in utripajo. `pointermove` pušča sled vilinskega prahu, klik ali tap naredi izbruh, konica palice (`[data-wand-tip]`) posipa iskrice. DPR ≤ 2, gostota sledi površini. Ustavi se, ko hero ni viden ali je zavihek skrit. |
+| Vila | `Hero.astro` `.lockup__fairy` | ob nalaganju `fly-in` (1.6 s), nato `float` (5.5 s) v neskončnost |
+| Okvir fotografije | `.hero__frame` | conic-gradient iz cian v magento, ki se vrti (`@property --angle`, 8 s) |
+| Cenovna značka | `.hero__price` | rahlo pozibavanje (`bob`, 4 s) |
+| Tekoči trak jedi | `DishMarquee.astro` | podvojen seznam, `translateX(-50%)` 55 s linearno; ob `:hover` ali `:focus-within` se ustavi; kopija je `aria-hidden`, njene povezave imajo `tabindex=-1` |
+| Pojavljanje ob drsenju | `[data-reveal]` + `initReveal()` v `ui.ts` | `opacity` + `translate` 0.7 s, stopnjevanje prek `--i`; element je skrit samo, ko ima `<html>` razred `js` |
+| Vstop heroja | `[data-rise]` | `rise` 0.7 s s stopnjevanjem |
+| Status | `.status__dot` | `pulse` 2 s |
 
-### Base Setup
-```css
-html { scroll-behavior: smooth; scroll-padding-top: 140px; } /* nav + lepljivi čipi */
-:root { --ease-out: cubic-bezier(.22, 1, .36, 1); }
-```
-
-### Entrance Animation (samo hero, ob nalaganju)
-```css
-@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-.hero [data-rise] { animation: rise .7s var(--ease-out) both; animation-delay: calc(var(--i, 0) * 80ms); }
-.hero__media { animation: rise .9s var(--ease-out) .15s both; }
-```
-
-### Scroll Behavior
-Ni scroll animacij. Lepljivi čipi kategorij dobijo `--shadow-sm`, ko se prilepijo (IntersectionObserver na sentinel). Aktivni čip sledi vidni kategoriji (IntersectionObserver, `rootMargin: -45% 0 -50% 0`) in se samodejno pomakne v vidno polje vrstice.
+Atributa `data-reveal` ne dajaj elementom, ki imajo lasten `transform` hover efekt (npr. `.dish`). Daj ga ovoju (mreži).
 
 ### Hover & Focus States
-- Gumbi: barva + dvig 1px (0.2s).
+- Gumbi: barva + dvig 1px (0.2s). Primarni CTA v heroju ima magenta sij (`--shadow-glow`).
 - Kartice jedi: dvig 2px + `--shadow-md` + zoom slike 1.05 (0.5s).
-- Povezave/navigacija: gorčični spodnji poudarek.
-- Fokus: povsod `outline: 3px solid var(--accent)` + offset; nikoli `outline: none` brez nadomestka.
-
-### Special Effects
-Živa značka odprtosti s pulzirajočo piko (`@keyframes pulse` 2s, samo `opacity/transform`).
+- Navigacija (temna): cian spodnji poudarek.
+- Fokus: povsod `outline: 3px` z odmikom, na svetlem v `--accent`, na temnem v `--cyan-light`. Nikoli `outline: none` brez nadomestka.
 
 ### Reduced Motion
-```css
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important;
-                           transition-duration: .01ms !important; scroll-behavior: auto !important; }
-}
-```
+Globalno pravilo v `base.css` skrajša vse CSS animacije. `sparkles.ts` se ne zažene, trak postane navaden vodoravno drsen seznam (brez kopije), `[data-reveal]` pa je takoj viden.
 
 ## 8. Do's and Don'ts
 
@@ -263,14 +216,15 @@ Ni scroll animacij. Lepljivi čipi kategorij dobijo `--shadow-sm`, ko se prilepi
 9. Podatke (meni, pijače, urnik) hrani samo v `src/data/*`, da jih lastnik zlahka posodobi.
 
 ### Don't
-1. Ne uporabljaj temnih/neonskih ozadij, gradientnih naslovov ali steklenih kartic (glassmorphism).
-2. Ne dodajaj scroll-jackinga, paralakse, GSAP/Lenis ali animacij ob drsenju (L1!).
+1. Temna podlaga je samo `--night` (nav, hero, trak, noga). Vsebina menija ostane svetla. Brez neonskih ozadij, gradientnih naslovov ali steklenih kartic.
+2. Ne dodajaj scroll-jackinga, paralakse ali GSAP/Lenis. Animacije ob drsenju samo prek `[data-reveal]`.
 3. Ne uporabljaj emojijev kot ikon; ikone so inline SVG (lucide slog, 1.75px črta).
 4. Ne uporabljaj sivih blokov kot nadomestnih slik.
 5. Ne skrivaj cen za "Več"/accordion; vse cene so vidne brez klika.
 6. Ne nalagaj Google Maps iframe (zasebnost, hitrost); samo povezava "Navodila za pot".
 7. Ne izmišljuj podatkov (e-pošta, minimalno naročilo, cena dostave), ki jih vir nima.
-8. Ne uporabljaj več kot ene poudarne barve za interaktivne elemente (samo paprika).
+8. Ne uporabljaj več kot ene poudarne barve za interaktivne elemente (magenta). Cian je dekor.
+9. Logotipa ne prerisuj s pisavo; uporabljaj slike iz `src/assets/brand/`.
 
 ## 9. Responsive Behavior
 

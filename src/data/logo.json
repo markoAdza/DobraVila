@@ -1,0 +1,20 @@
+{
+  "background": "#24383f",
+  "aspect": 3.2649,
+  "wordmark": {
+    "left": 0,
+    "top": 6.343,
+    "width": 80.229,
+    "height": 93.657
+  },
+  "fairy": {
+    "left": 64,
+    "top": 0,
+    "width": 36,
+    "height": 82.836
+  },
+  "wandTip": {
+    "left": 6.667,
+    "top": 14.414
+  }
+}

@@ -7,7 +7,8 @@
  * 1. Downloads the food photos listed in src/data/photos.json from Wikimedia Commons
  *    (free licences: CC0 / public domain / CC BY / CC BY-SA) → .asset-cache/commons/   (cached)
  * 2. Optimises them into src/assets/food/<key>.jpg (max 1400 px, Astro then serves AVIF/WebP)
- * 3. Writes favicons + og-image.jpg → public/
+ *
+ * Brand assets (logo parts, favicons, og-image) come from scripts/prepare-logo.mjs.
  *
  * To swap a photo: change its entry in src/data/photos.json (file, page, author, licence) and re-run.
  * Authors and licences are listed on the /fotografije page automatically.
@@ -63,18 +64,4 @@ for (const [key, photo] of Object.entries(photos)) {
 }
 console.log(`photos: ${Object.keys(photos).length} optimised (${fetched} downloaded)`);
 
-/* Favicon: paprika-red rounded square with a cream "V" monogram. */
-const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="16" fill="#C0321A"/>
-  <path d="M17 17h8.6l6.4 20.5L38.4 17H47L36.6 47h-9.2z" fill="#FAF6EF"/>
-</svg>`;
-await writeFile(p('public', 'favicon.svg'), faviconSvg);
-await sharp(Buffer.from(faviconSvg)).resize(180, 180).png().toFile(p('public', 'apple-touch-icon.png'));
-await sharp(Buffer.from(faviconSvg)).resize(32, 32).png().toFile(p('public', 'favicon-32.png'));
-
-/* OG image: hero photo cropped to 1200×630. */
-await sharp(p('src', 'assets', 'food', 'kebab-hero.jpg'))
-  .resize(1200, 630, { fit: 'cover', position: 'attention' })
-  .jpeg({ quality: 82, mozjpeg: true })
-  .toFile(p('public', 'og-image.jpg'));
-console.log('favicons + og-image written');
+/* Favicons + og-image are generated from the logo: npm run logo (scripts/prepare-logo.mjs). */

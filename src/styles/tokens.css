@@ -1,29 +1,46 @@
-/* Design tokens: the only place where raw colour values live (see DESIGN.md §2). */
+/* Design tokens: the only place where raw colour values live (see DESIGN.md §2).
+   Palette comes from the logo: slate night background, cyan "dobre", magenta "vile", white fairy. */
 :root {
   color-scheme: light;
 
-  /* Backgrounds */
-  --bg: #faf6ef;
+  /* Backgrounds (light content area) */
+  --bg: #f6f8f9;
   --surface: #ffffff;
-  --surface-alt: #f3ece0;
-  --surface-hover: #fff9f1;
+  --surface-alt: #edf2f4;
+  --surface-hover: #f9fbfc;
+
+  /* Night: logo background (nav, hero, marquee, footer) */
+  --night: #24383f;
+  --night-2: #1a2a30;
+  --night-3: #2e464e;
+  --on-night: #ffffff;
+  --on-night-muted: #b8c7cc;
+  --night-line: rgba(255, 255, 255, 0.14);
 
   /* Lines */
-  --line: #e6dccd;
-  --line-strong: #cdbfa9;
+  --line: #dfe6e9;
+  --line-strong: #c2cdd2;
 
   /* Text */
-  --ink: #1b1712;
-  --ink-soft: #4a4239;
-  --ink-muted: #675e53;
+  --ink: #1d2c32;
+  --ink-soft: #3d4b52;
+  --ink-muted: #5b6a71;
   --on-accent: #ffffff;
 
-  /* Accent: paprika */
-  --accent: #c0321a;
-  --accent-hover: #9c2812;
-  --accent-soft: #fbe4dc;
+  /* Accent: magenta ("vile") — buttons, prices, active chip, links (5.5:1 on white) */
+  --accent: #c8146f;
+  --accent-hover: #a10f59;
+  --accent-soft: #fde3ef;
+  --magenta: #e0177f; /* exact logo tone: decoration only */
+  --magenta-light: #ff5ca8; /* decoration on --night */
 
-  /* Decorative: mustard */
+  /* Secondary: cyan ("dobre") — decoration, underlines, sparkles */
+  --cyan: #1ba1df;
+  --cyan-light: #5cc6f2; /* text/links on --night (6.3:1) */
+  --cyan-ink: #0a6e9e; /* cyan as text on light (5.6:1) */
+  --cyan-soft: #e1f3fb;
+
+  /* Decorative: mustard (only for the rating star + "pekoče") */
   --mustard: #f2b705;
   --mustard-soft: #fdf1c7;
 
@@ -36,9 +53,12 @@
   --veg-soft: #e5f0df;
 
   /* RGB helpers */
-  --ink-rgb: 27, 23, 18;
-  --accent-rgb: 192, 50, 26;
-  --bg-rgb: 250, 246, 239;
+  --ink-rgb: 29, 44, 50;
+  --night-rgb: 36, 56, 63;
+  --accent-rgb: 200, 20, 111;
+  --magenta-rgb: 224, 23, 127;
+  --cyan-rgb: 27, 161, 223;
+  --bg-rgb: 246, 248, 249;
   --mustard-rgb: 242, 183, 5;
   --ok-rgb: 40, 108, 64;
 
@@ -68,6 +88,7 @@
   --shadow-sm: 0 1px 2px rgba(var(--ink-rgb), 0.06), 0 4px 12px -6px rgba(var(--ink-rgb), 0.12);
   --shadow-md: 0 10px 24px -12px rgba(var(--ink-rgb), 0.22), 0 2px 6px rgba(var(--ink-rgb), 0.05);
   --shadow-lg: 0 30px 60px -30px rgba(var(--ink-rgb), 0.35);
+  --shadow-glow: 0 18px 50px -18px rgba(var(--magenta-rgb), 0.55);
 
   /* Motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
